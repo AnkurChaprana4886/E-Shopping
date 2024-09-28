@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Shopping DAL", "E-Shoppin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Shopping Common", "E-Shopping Common\E-Shopping Common.csproj", "{A111E877-248D-4661-B5F5-322EE5154FB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Shopping.Test", "E-Shopping.Test\E-Shopping.Test.csproj", "{4D82D610-CC24-410C-8307-3EEB877FB28D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Shopping.Test", "E-Shopping.Test\E-Shopping.Test.csproj", "{4D82D610-CC24-410C-8307-3EEB877FB28D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{53F9E69D-BA56-4F7F-985F-9F1764B29123} = {53F9E69D-BA56-4F7F-985F-9F1764B29123}
 	EndProjectSection
