@@ -1,0 +1,27 @@
+# Use the official .NET SDK image as a build environment
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+
+# Copy csproj files and restore as distinct layers
+COPY ["E-Shopping API/E-Shopping API.csproj", "E-Shopping API/"]
+COPY ["E-Shopping BAL/E-Shopping BAL.csproj", "E-Shopping BAL/"]
+COPY ["E-Shopping DAL/E-Shopping DAL.csproj", "E-Shopping DAL/"]
+COPY ["E-Shopping Common/E-Shopping Common.csproj", "E-Shopping Common/"]
+
+# Restore dependencies
+RUN dotnet restore "E-Shopping API/E-Shopping API.csproj"
+
+# Copy the entire project and build
+COPY . .
+WORKDIR "/src/E-Shopping API"
+RUN dotnet build "E-Shopping API.csproj" -c Release -o /app/build
+
+# Publish the application
+FROM build AS publish
+RUN dotnet publish "E-Shopping API.csproj" -c Release -o /app/publish
+
+# Use the base image to run the application
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "E-Shopping API.dll"]
