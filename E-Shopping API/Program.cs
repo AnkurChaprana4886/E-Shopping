@@ -45,11 +45,16 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "E-Shopping API V1");
+        //c.RoutePrefix = string.Empty;  // Optional, serves the Swagger UI at the root path
+    });
 }
+
 
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
